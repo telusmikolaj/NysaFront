@@ -1,4 +1,14 @@
 :host {
-  background: #ddd;
+  background: #292b31;
   padding: 20px;
+}
+
+.logo {
+  font-size: 22px;
+  color:white;
+}
+
+
+.logoIcon, .shoppingBasket {
+  font-size: 30px;
 }
