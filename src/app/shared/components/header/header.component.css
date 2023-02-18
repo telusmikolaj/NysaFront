@@ -1,5 +1,6 @@
+
 :host {
-  background: #292b31;
+  background: var(--darkgray);
   padding: 20px;
 }
 

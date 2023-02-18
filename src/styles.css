@@ -1,4 +1,6 @@
 
+@import "variables.css";
+
 body,
 html {
   margin: 0;
@@ -7,3 +9,7 @@ html {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.content {
+  padding: 20px;
+  background: var(--lightgray);
+}
