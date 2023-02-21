@@ -5,7 +5,7 @@
       <mat-card-title>{{product.name}}</mat-card-title>
       <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
       <div fxLayout="row">
-        <img src="assets/placeholder.jpg" mat-card-lg-image class="productImage">
+        <img src="{{product.imgUrl}}" mat-card-lg-image class="productImage">
         <mat-card-content fxFlex class="productContent">{{product.description}}</mat-card-content>
       </div>
     </div>

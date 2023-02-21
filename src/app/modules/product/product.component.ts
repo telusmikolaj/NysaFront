@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductService} from "./product.service";
 import {Product} from "./model/product";
 
@@ -8,7 +8,7 @@ import {Product} from "./model/product";
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  products:Product[] = [];
+  products: Product[] = [];
 
   constructor(private productService: ProductService) {
 
@@ -19,6 +19,7 @@ export class ProductComponent {
   }
 
   getProducts() {
-    this.products = this.productService.getProducts();
-}
+    this.productService.getProducts()
+      .subscribe(products => this.products = products);
+  }
 }
