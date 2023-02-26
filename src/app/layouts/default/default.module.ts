@@ -8,6 +8,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {SharedModule} from "../../shared/shared.module";
 import {MatCardModule} from "@angular/material/card";
 import {MaterialModule} from "../../shared/material.module";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
@@ -23,7 +24,8 @@ import {MaterialModule} from "../../shared/material.module";
     FlexLayoutModule,
     SharedModule,
     MatCardModule,
-    MaterialModule
+    MaterialModule,
+    MatPaginatorModule
   ]
 })
 export class DefaultModule { }
