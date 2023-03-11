@@ -13,6 +13,8 @@ import {FullpageadminModule} from "./layouts/fullpageadmin/fullpageadmin.module"
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {AdminProductComponent} from './modules/admin/admin-product/admin-product.component';
+import { AdminProductUpdateComponent } from './modules/admin/admin-product-update/admin-product-update.component';
+import { AdminProductAddComponent } from './modules/admin/admin-product-add/admin-product-add.component';
 
 
 @NgModule({

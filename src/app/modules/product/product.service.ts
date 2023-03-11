@@ -13,6 +13,6 @@ export class ProductService {
   }
 
   getProducts(page: number, size:number): Observable<Page<Product>> {
-    return this.http.get<Page<Product>>(`http://localhost:8085/product?page=${page}&size=${size}`);
+    return this.http.get<Page<Product>>(`api/product?page=${page}&size=${size}`);
   }
 }
