@@ -16,6 +16,9 @@ import {AdminProductComponent} from './modules/admin/admin-product/admin-product
 import { AdminProductUpdateComponent } from './modules/admin/admin-product-update/admin-product-update.component';
 import { AdminProductAddComponent } from './modules/admin/admin-product-add/admin-product-add.component';
 import { AdminMessageComponent } from './modules/admin/admin-message/admin-message.component';
+import { AdminConfirmDialogComponent } from './modules/admin/admin-confirm-dialog/admin-confirm-dialog.component';
+import { ImageUploaderComponent } from './modules/admin/image-uploader/image-uploader.component';
+import { ProductDetailsComponent } from './modules/product-details/product-details.component';
 
 
 @NgModule({

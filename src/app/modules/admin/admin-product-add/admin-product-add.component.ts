@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdminProductAddService} from "./admin-product-add.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AdminMessageService} from "../admin-message.service";
+import {ImageUploaderComponent} from "../image-uploader/image-uploader.component";
+import {AdminProductFormComponent} from "../admin-product-form/admin-product-form.component";
 
 @Component({
   selector: 'app-admin-product-add',
@@ -13,6 +15,7 @@ import {AdminMessageService} from "../admin-message.service";
 export class AdminProductAddComponent implements OnInit{
 
   productForm!: FormGroup;
+  @ViewChild(AdminProductFormComponent) formComponent!: AdminProductFormComponent
 
 
   constructor(private formBuilder: FormBuilder,
@@ -33,13 +36,15 @@ export class AdminProductAddComponent implements OnInit{
   }
 
   submit() {
-    this.adminProductAddService.saveNewProduct(this.productForm.value)
+    this.adminProductAddService.saveNewProduct(this.productForm.value, this.formComponent.getFiles())
       .subscribe({
-        next:product => {
-          this.router.navigate(["/admin/products/update",product.id])
-        .then(() => this.snackBar.open("Produkt został dodany.", "", {duration:3000}))
-  },
-    error: err => this.adminMessageService.addSpringErrors(err.error)
-  })
+        next: product => {
+          this.router.navigate(['/admin/products/update', product.id])
+            .then(() => this.snackBar.open('Produkt został dodany.', '', { duration: 3000 }))
+        },
+        error: err => this.adminMessageService.addSpringErrors(err.error)
+      });
 }
+
+
 }

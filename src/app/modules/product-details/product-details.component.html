@@ -1,0 +1,28 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxFlex fxLayoutGap="20">
+    <div>
+      <img *ngIf="!product.imgUrl" src="/assets/image-placeholder.png" width="350">
+      <img *ngIf="product.imgUrl" src="{{product?.imgUrl}}" width="350" height="400">
+      <!-- Image gallery -->
+      <div class="image-gallery" *ngIf="product?.imgUrls && product.imgUrls.length">
+        <mat-grid-list cols="5" rowHeight="100px" gutterSize="10px">
+          <mat-grid-tile *ngFor="let image of product.imgUrls">
+            <img [ngClass]="{'thumbnail': true, 'active': image === product.imgUrl}"
+                 src="{{image}}" (click)="product.imgUrl = image">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <h1>{{product?.name}}</h1>
+      <small>{{product?.category}}</small>
+      <div class="description">
+        {{product?.description}}
+      </div>
+      <div fxLayout="row" fxFlexAlign="end">
+        <span class="price">{{product?.price}} {{product?.currency}}</span>
+      </div>
+      <button mat-flat-button color="warn">Do koszyka</button>
+    </div>
+  </div>
+</div>

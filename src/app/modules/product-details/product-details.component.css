@@ -1,0 +1,17 @@
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.thumbnail:hover {
+  opacity: 0.8;
+}
+.thumbnail.active {
+  border: 2px solid #FF4A4A; /* Add a border to the active thumbnail */
+  box-sizing: border-box; /* Adjust box sizing to avoid changing thumbnail dimensions */
+  border-radius: 4px;
+}

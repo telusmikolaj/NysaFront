@@ -9,6 +9,8 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatCardModule} from "@angular/material/card";
 import {MaterialModule} from "../../shared/material.module";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {ProductDetailsComponent} from "../../modules/product-details/product-details.component";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 
@@ -16,7 +18,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
   declarations: [
     DefaultComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     SharedModule,
     MatCardModule,
     MaterialModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule
   ]
 })
 export class DefaultModule { }

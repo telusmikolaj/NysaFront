@@ -1,0 +1,11 @@
+<div class="image-uploader">
+  <input type="file" multiple (change)="onFilesSelected($event)" #fileInput />
+  <button type="button" class="upload-button" (click)="fileInput.click()">Dodaj zdjęcia</button>  <div class="thumbnails">
+    <div class="thumbnail" *ngFor="let thumb of thumbnails; let i = index">
+      <img [src]="thumb" alt="Image thumbnail" />
+      <button mat-icon-button class="delete-btn" (click)="removeImage(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

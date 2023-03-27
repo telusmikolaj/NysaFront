@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductDetails {
   id: number,
   name: string,
   category: string,
@@ -6,4 +6,5 @@ export interface Product {
   price:number,
   currency:string
   imgUrl:string
+  imgUrls: string[]
 }

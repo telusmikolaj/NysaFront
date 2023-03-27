@@ -1,5 +1,9 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {FormGroup} from "@angular/forms";
+import {ImageUploaderComponent} from "../image-uploader/image-uploader.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ProductService} from "../../product/product.service";
+import {AdminProductAddService} from "../admin-product-add/admin-product-add.service";
 
 @Component({
   selector: 'app-admin-product-form',
@@ -62,18 +66,74 @@ import {FormGroup} from "@angular/forms";
             </div>
           </div>
         </mat-form-field>
-        <div fxLayoutAlign="end">
-          <button mat-flat-button color="primary" [disabled]="!parentForm.valid">Zapisz</button>
+      <div fxLayout="column" class="image-uploader-container">
+        <app-image-uploader></app-image-uploader>
+      </div>
+      <div class="card-container">
+
+      <mat-card class="average-price-card">
+        <mat-card-header>
+          <mat-card-title>
+            W nysa.it możesz sprawdzić średnią cenę swojego produktu na innych portalach aukcyjnych i na podstawie tego podjąć decyzję o cenie
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="average-price-section">
+            <button mat-raised-button color="accent" [disabled]="!name?.valid" (click)="getAveragePrice()">Sprawdź średnią cenę</button>
+            <mat-progress-spinner *ngIf="isLoading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div *ngIf="averagePrice" class="average-price-result">
+            Średnia cena: {{ averagePrice }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      </div>
+      <div fxLayoutAlign="end">
+        <button mat-flat-button color="primary" [disabled]="!parentForm.valid">Zapisz</button>
         </div>
     </div>`,
   styles: [`
-  .errorMessages {
-    color:red;
-  }`]
+
+    .errorMessages {
+      color: red;
+    }
+    .card-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .average-price-card {
+      width: 50%;
+      margin: 24px 0;
+      background-color: #e0e0e0; /* Replace with your desired background color */
+      color: #333; /* Replace with your desired text color */
+    }
+    .average-price-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 24px 0;
+    }
+    .average-price-result {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+
+  `]
 })
 export class AdminProductFormComponent implements OnInit {
 
+  isLoading = false;
+  averagePrice: string | null = null;
+
+  @ViewChild(ImageUploaderComponent) imageUploader!: ImageUploaderComponent;
   @Input() parentForm!: FormGroup;
+
+  constructor(private snackBar: MatSnackBar, private productService: AdminProductAddService) {
+  }
   ngOnInit(): void {
   }
 
@@ -91,5 +151,36 @@ export class AdminProductFormComponent implements OnInit {
   }
   get description() {
     return this.parentForm.get("description");
+  }
+
+  getFiles(): File[] {
+    return this.imageUploader.getFiles();
+  }
+
+  getAveragePrice(): void {
+    if (this.name?.valid) {
+      const productName = this.name.value;
+
+      // Show the progress spinner
+      this.isLoading = true;
+
+      // Send the request to the backend using the ProductService
+      this.productService.getAveragePrice(productName).subscribe(
+        (response: any) => {
+          // Handle the success response
+          this.isLoading = false;
+          this.averagePrice = response;
+        },
+        (error) => {
+          // Handle the error response
+          this.isLoading = false;
+          this.snackBar.open('Error fetching average price', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      );
+    }
   }
 }

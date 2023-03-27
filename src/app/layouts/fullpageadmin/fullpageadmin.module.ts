@@ -18,6 +18,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AdminProductAddComponent} from "../../modules/admin/admin-product-add/admin-product-add.component";
 import {AdminProductFormComponent} from "../../modules/admin/admin-product-form/admin-product-form.component";
 import {AdminMessageComponent} from "../../modules/admin/admin-message/admin-message.component";
+import {AdminConfirmDialogComponent} from "../../modules/admin/admin-confirm-dialog/admin-confirm-dialog.component";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {ImageUploaderComponent} from "../../modules/admin/image-uploader/image-uploader.component";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -30,6 +36,9 @@ import {AdminMessageComponent} from "../../modules/admin/admin-message/admin-mes
     AdminProductAddComponent,
     AdminProductFormComponent,
     AdminMessageComponent,
+    AdminConfirmDialogComponent,
+    ImageUploaderComponent,
+
 
   ],
   imports: [
@@ -44,7 +53,11 @@ import {AdminMessageComponent} from "../../modules/admin/admin-message/admin-mes
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ]
 })
 export class FullpageadminModule { }
